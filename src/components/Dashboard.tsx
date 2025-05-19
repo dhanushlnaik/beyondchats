@@ -1,8 +1,36 @@
-import { Mail, MessageCircle, Phone, Plus, Search, Share2 } from "lucide-react";
+import { Plus, Search} from "lucide-react";
+import ChatArea from "./ChatArea";
+
+const inboxItems = [
+  {
+    icon: <div className="w-6 h-6 rounded-full bg-[#4A90E2] text-white flex items-center justify-center text-sm font-bold">M</div>,
+    label: "Messenger · [Demo]",
+    subtext: "Install Messenger",
+    time: "2h",
+  },
+  {
+    icon: <div className="w-6 h-6 rounded-full bg-[#00C48C] text-white flex items-center justify-center text-sm font-bold">E</div>,
+    label: "Email · [Demo]",
+    subtext: "This is a demo email. It shows how email c...",
+    time: "2h",
+  },
+  {
+    icon: <div className="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center text-sm font-bold">W</div>,
+    label: "WhatsApp · [Demo]",
+    subtext: "Set up WhatsApp or social channels",
+    time: "2h",
+  },
+  {
+    icon: <div className="w-6 h-6 rounded-full bg-[#007AFF] text-white flex items-center justify-center text-sm font-bold">P</div>,
+    label: "Phone · [Demo]",
+    subtext: "Set up phone or SMS",
+    time: "2h",
+  },
+];
 
 export default function Dashboard() {
   return (
-    <main className="bg-[#08090A] text-white pl-[44px] w-full">
+    <main className="bg-[#08090A] text-white pl-[18px] w-full">
       {/* Top Notification Bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-[#1D3153] rounded-lg text-white text-sm font-medium w-full mx-auto mt-4 shadow-sm">
         <span>
@@ -22,9 +50,10 @@ export default function Dashboard() {
       {/* Main 3-Column Layout */}
       <div className="flex h-[calc(100vh-80px)] mt-4 gap-2">
         {/* Left Panel (Inbox Sidebar) */}
-    <section className="w-[620px] bg-[#282828] border-r border-white/10 p-4 overflow-y-auto rounded-xl text-white">
-           <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold">Inbox</h2>
+    <section className="w-[620px] bg-[#1E1E1E] p-4 overflow-y-auto rounded-xl text-white">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-extrabold">Inbox</h2>
         <div className="flex space-x-2">
           <button className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
             <Search className="w-4 h-4" />
@@ -35,41 +64,33 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/* Table Headers */}
+      <div className="flex justify-between text-sm text-white/50 px-2 py-1 mb-2">
+        <span>4 Open</span>
+        <span className="flex items-center gap-1">Last activity <span className="rotate-90">⇅</span></span>
+      </div>
+
+      {/* Inbox Items */}
       <div className="space-y-2">
-        <InboxItem icon={<MessageCircle className="text-white w-4 h-4" />} label="Messenger - [Demo]" time="2h" />
-        <InboxItem icon={<Mail className="text-white w-4 h-4" />} label="Email - [Demo]" time="2h" />
-        <InboxItem icon={<Share2 className="text-white w-4 h-4" />} label="WhatsApp - [Demo]" time="2h" />
-        <InboxItem icon={<Phone className="text-white w-4 h-4" />} label="Phone - [Demo]" time="2h" />
+        {inboxItems.map((item, idx) => (
+          <div key={idx} className="flex justify-between items-start bg-white/5 hover:bg-white/10 p-3 rounded-lg cursor-pointer transition">
+            <div className="flex gap-3">
+              {item.icon}
+              <div>
+                <p className="font-medium text-sm">{item.label}</p>
+                <p className="text-white/60 text-xs">{item.subtext}</p>
+              </div>
+            </div>
+            <span className="text-xs text-white/50">{item.time}</span>
+          </div>
+        ))}
       </div>
     </section>
 
-
-        {/* Middle Panel (Chat Area) */}
-        <section className="flex-1 bg-[#1B1B1A] p-6 overflow-y-auto flex flex-col rounded-xl">
-          <h2 className="text-xl font-semibold mb-4">Messenger</h2>
-          <div className="bg-gray-800 p-4 rounded-lg mb-2 text-sm">
-            <p className="text-white">
-              This is a demo message. It shows how a customer conversation from the Messenger will look in your Inbox.
-              <br />
-              <br />
-              Once a channel is installed, all conversations come straight to your Inbox...
-            </p>
-            <button className="mt-3 text-blue-400 underline text-sm">Install Messenger</button>
-          </div>
-
-          <div className="mt-4">
-            <label htmlFor="reply" className="text-sm text-white/70 mb-1 block">Reply</label>
-            <textarea
-              id="reply"
-              className="w-full h-24 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm text-white resize-none"
-              placeholder="Use CtrlK for shortcuts"
-            />
-            <button className="mt-2 bg-blue-600 text-white px-4 py-1 rounded">Send</button>
-          </div>
-        </section>
+<ChatArea/>
 
         {/* Right Panel (Details Sidebar) */}
-        <section className="w-[320px] bg-[#0E0E0E] border-l border-white/10 p-4 overflow-y-auto">
+        <section className="w-[320px] bg-[#282828] rounded-xl  p-4 overflow-y-auto">
           <h3 className="text-lg font-semibold mb-4">Details</h3>
           <div className="text-sm space-y-3">
             <div><span className="font-semibold">Assignee:</span> NNM22IS044 DHANUSH</div>
@@ -85,22 +106,3 @@ export default function Dashboard() {
   );
 }
 
-function InboxItem({
-  label,
-  time,
-  icon,
-}: {
-  label: string;
-  time: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div className="flex items-center justify-between bg-white/5 hover:bg-white/10 transition rounded-md px-3 py-2 cursor-pointer">
-      <div className="flex items-center space-x-2">
-        {icon}
-        <span className="text-sm">{label}</span>
-      </div>
-      <span className="text-xs text-white/50">{time}</span>
-    </div>
-  );
-}
