@@ -1,8 +1,15 @@
-import { ChevronDown, Send, Star, MoreHorizontal, Ticket, MoonStar, InboxIcon } from "lucide-react";
-
+import {
+  ChevronDown,
+  Star,
+  MoreHorizontal,
+  Ticket,
+  MoonStar,
+  InboxIcon,
+  Zap,
+} from "lucide-react";
 export default function ChatArea() {
   return (
-    <section className="flex-1 bg-[#1E1E1E] p-4 flex flex-col rounded-xl text-white relative overflow-hidden">
+    <section className="flex-1 bg-[#282828] p-4 flex flex-col rounded-xl text-white relative overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-semibold">Messenger</h2>
@@ -11,20 +18,18 @@ export default function ChatArea() {
             <Star className="w-4 h-4" />
           </button>
           <button className="bg-white/10 hover:bg-white/20 transition p-1.5 rounded-full text-white/60 hover:text-white">
-            <MoreHorizontal className="w-4 h-4" />
-          </button>
-                    <button className="bg-white/10 hover:bg-white/20 transition p-1.5 rounded-full text-white/60 hover:text-white">
-            <Ticket className="w-4 h-4" />
+            <MoreHorizontal color="white" className="w-4 h-4" />
           </button>
           <button className="bg-white/10 hover:bg-white/20 transition p-1.5 rounded-full text-white/60 hover:text-white">
-            <MoonStar className="w-4 h-4" />
+            <Ticket color="white" className="w-4 h-4" />
           </button>
-<button className="bg-white text-[#242424] px-3 py-2 rounded-full text-sm font-medium flex items-center gap-1">
-  <InboxIcon color="#242424" className="w-5 h-5" />
-  Close
-</button>
-
-
+          <button className="bg-white/10 hover:bg-white/20 transition p-1.5 rounded-full text-white/60 hover:text-white">
+            <MoonStar color="white" className="w-4 h-4" />
+          </button>
+          <button className="bg-white text-[#242424] px-3 py-2 rounded-full text-sm font-medium flex items-center gap-1">
+            <InboxIcon color="#242424" className="w-5 h-5" />
+            Close
+          </button>
         </div>
       </div>
       <div className="p-2  border-t border-white/20"></div>
@@ -37,12 +42,12 @@ export default function ChatArea() {
           <div className="bg-[#2F2F2F] rounded-xl p-4 text-sm max-w-xl">
             <p className="mb-2">
               This is a demo message. It shows how a customer conversation from
-              the Messenger will look in your Inbox. Conversations handled by Fin
-              AI Agent will also appear here.
+              the Messenger will look in your Inbox. Conversations handled by
+              Fin AI Agent will also appear here.
             </p>
             <p>
-              Once a channel is installed, all conversations come straight to your
-              Inbox, so you can route them to the right team.
+              Once a channel is installed, all conversations come straight to
+              your Inbox, so you can route them to the right team.
             </p>
           </div>
         </div>
@@ -63,25 +68,41 @@ export default function ChatArea() {
         </div>
       </div>
 
-      {/* Reply Box */}
-      <div className="mt-auto border-t border-white/10 pt-4">
-        <div className="flex items-center justify-between mb-1">
-          <label htmlFor="reply" className="text-sm text-white/60 font-medium">
-            Reply
-          </label>
-          <div className="flex items-center gap-1 text-sm text-white/40 cursor-pointer">
-            <ChevronDown className="w-4 h-4" />
+      <div className="mt-auto rounded-lg border border-white/20 bg-[#1e1e1e] p-3">
+        {/* Top Header */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1 text-sm text-white font-medium">
+            <span className="flex items-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M4 4h12v12H4z" />
+              </svg>
+              Reply
+            </span>
+            <ChevronDown className="w-4 h-4 text-white/60" />
+            <span className="text-white/40 font-normal ml-2">Messenger</span>
           </div>
         </div>
 
-        <div className="relative">
-          <textarea
-            id="reply"
-            placeholder="Use CtrlK for shortcuts"
-            className="w-full h-24 resize-none bg-[#2A2A2A] border border-[#444] rounded-lg p-3 text-sm text-white"
-          />
-          <button className="absolute bottom-2 right-2 bg-blue-600 hover:bg-blue-700 transition text-white px-4 py-1.5 rounded flex items-center gap-1 text-sm">
-            Send <Send className="w-4 h-4" />
+        {/* Textarea */}
+        <textarea
+          placeholder="Use CtrlK for shortcuts"
+          className="w-full bg-transparent text-white text-sm placeholder-white/40 resize-none h-16 outline-none"
+        />
+
+        {/* Bottom Actions */}
+        <div className="flex items-center justify-between pt-2 border-t border-white/10 mt-2">
+          <div className="flex items-center text-white/50 gap-3">
+            <Zap className="w-4 h-4 cursor-pointer" />
+            <div className="w-px h-4 bg-white/20" />
+            <MoreHorizontal className="w-4 h-4 cursor-pointer" />
+          </div>
+
+          <button
+            className="flex items-center text-sm text-white/40 gap-1 cursor-not-allowed"
+            disabled
+          >
+            Send
+            <ChevronDown className="w-4 h-4" />
           </button>
         </div>
       </div>
