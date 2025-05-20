@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter , Inter_Tight } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 
 const geistSans = Inter({
@@ -30,14 +30,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark bg-[#080909]`}
       >
         <main className="">
-            <SidebarProvider>
-      <AppSidebar />
-      
-        <SidebarTrigger />
-        {children}
-              
-    </SidebarProvider>
-    </main>
+          <SidebarProvider>
+            <AppSidebar />
+
+            <SidebarTrigger />
+            {children}
+          </SidebarProvider>
+        </main>
       </body>
     </html>
   );

@@ -39,7 +39,7 @@ export function AppSidebar() {
         "fixed top-0 left-0 h-full z-50 flex flex-col justify-between transition-all duration-300",
         hovered
           ? "w-49 bg-white/5 backdrop-blur-xl shadow-xl rounded-r-2xl outline-1 outline-white/20"
-          : "w-11 bg-[#080909]"
+          : "w-11 bg-[#080909]",
       )}
     >
       <div className="p-2 space-y-1">
@@ -83,7 +83,7 @@ function SidebarItem({
     <div
       className={clsx(
         "flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors hover:bg-white/10 hover:outline-1 hover:outline-white/10 text-white",
-        !expanded && "justify-center"
+        !expanded && "justify-center",
       )}
     >
       {/* Icon size can be adjusted based on expansion */}
